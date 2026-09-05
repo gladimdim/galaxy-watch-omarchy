@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'org.omarchy.watchface'
+    namespace 'com.gladimdim.omarchy.watchface'
     compileSdk 34
 
     defaultConfig {
-        applicationId "org.omarchy.watchface"
+        applicationId "com.gladimdim.omarchy.watchface"
         minSdk 33
         targetSdk 34
         versionCode 1
