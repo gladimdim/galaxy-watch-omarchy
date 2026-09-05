@@ -8,21 +8,21 @@
         <Group x="0" y="0" width="450" height="450" name="radial_framework" alpha="255">
             <Variant mode="AMBIENT" target="alpha" value="0"/>
             <PartDraw x="0" y="0" width="450" height="450">
-                <!-- Top-Right Radial Track (Battery: 18° to 74°) -->
-                <Arc direction="CLOCKWISE" startAngle="18" endAngle="74" centerX="225" centerY="225" width="416" height="416">
-                    <Stroke color="#359ece6a" cap="ROUND" thickness="8"/>
+                <!-- Top-Right Radial Track (Battery: 16° to 76°) -->
+                <Arc direction="CLOCKWISE" startAngle="16" endAngle="76" centerX="225" centerY="225" width="416" height="416">
+                    <Stroke color="#359ece6a" cap="ROUND" thickness="10"/>
                 </Arc>
-                <!-- Bottom-Right Radial Track (Steps: 106° to 162°) -->
-                <Arc direction="CLOCKWISE" startAngle="106" endAngle="162" centerX="225" centerY="225" width="416" height="416">
-                    <Stroke color="#35e0af68" cap="ROUND" thickness="8"/>
+                <!-- Bottom-Right Radial Track (Steps: 104° to 164°) -->
+                <Arc direction="CLOCKWISE" startAngle="104" endAngle="164" centerX="225" centerY="225" width="416" height="416">
+                    <Stroke color="#35e0af68" cap="ROUND" thickness="10"/>
                 </Arc>
-                <!-- Bottom-Left Radial Track (Heart/Health: 198° to 254°) -->
-                <Arc direction="CLOCKWISE" startAngle="198" endAngle="254" centerX="225" centerY="225" width="416" height="416">
-                    <Stroke color="#35f7768e" cap="ROUND" thickness="8"/>
+                <!-- Bottom-Left Radial Track (Heart/Health: 196° to 256°) -->
+                <Arc direction="CLOCKWISE" startAngle="196" endAngle="256" centerX="225" centerY="225" width="416" height="416">
+                    <Stroke color="#35f7768e" cap="ROUND" thickness="10"/>
                 </Arc>
-                <!-- Top-Left Radial Track (Weather/Events: 286° to 342°) -->
-                <Arc direction="CLOCKWISE" startAngle="286" endAngle="342" centerX="225" centerY="225" width="416" height="416">
-                    <Stroke color="#357dcfff" cap="ROUND" thickness="8"/>
+                <!-- Top-Left Radial Track (Weather/Events: 284° to 344°) -->
+                <Arc direction="CLOCKWISE" startAngle="284" endAngle="344" centerX="225" centerY="225" width="416" height="416">
+                    <Stroke color="#357dcfff" cap="ROUND" thickness="10"/>
                 </Arc>
             </PartDraw>
         </Group>
@@ -57,7 +57,7 @@
         <PartText x="25" y="302" width="400" height="28" alpha="255">
             <Variant mode="AMBIENT" target="alpha" value="0"/>
             <Text align="CENTER">
-                <Font family="jetbrains_mono_bold" size="14" weight="NORMAL" color="#ff7aa2f7">
+                <Font family="jetbrains_mono_bold" size="17" weight="NORMAL" color="#ff7aa2f7">
                     <Template><![CDATA[%s %d %s]]>
                         <Parameter expression="[DAY_OF_WEEK_S]"/>
                         <Parameter expression="[DAY]"/>
@@ -71,7 +71,7 @@
         <PartText x="25" y="302" width="400" height="28" alpha="0">
             <Variant mode="AMBIENT" target="alpha" value="200"/>
             <Text align="CENTER">
-                <Font family="jetbrains_mono_bold" size="14" weight="NORMAL" color="#ff565f89">
+                <Font family="jetbrains_mono_bold" size="17" weight="NORMAL" color="#ff565f89">
                     <Template><![CDATA[%s %d %s]]>
                         <Parameter expression="[DAY_OF_WEEK_S]"/>
                         <Parameter expression="[DAY]"/>
@@ -94,23 +94,23 @@
             <BoundingArc
                 centerX="225" centerY="225"
                 width="416" height="416"
-                thickness="40"
+                thickness="44"
                 isRoundEdge="TRUE"
-                startAngle="18" endAngle="74"
+                startAngle="16" endAngle="76"
                 direction="CLOCKWISE"
                 outlinePadding="2"/>
             <Complication type="RANGED_VALUE">
                 <!-- Dynamic Gauge Track -->
                 <PartDraw x="0" y="0" width="450" height="450">
-                    <Arc direction="CLOCKWISE" startAngle="18" endAngle="74" centerX="225" centerY="225" width="416" height="416">
-                        <Transform target="endAngle" value="18 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]) ? 100 : ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]))) * 56)"/>
-                        <Stroke color="#ff9ece6a" cap="ROUND" thickness="8"/>
+                    <Arc direction="CLOCKWISE" startAngle="16" endAngle="76" centerX="225" centerY="225" width="416" height="416">
+                        <Transform target="endAngle" value="16 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]) ? 100 : ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]))) * 60)"/>
+                        <Stroke color="#ff9ece6a" cap="ROUND" thickness="10"/>
                     </Arc>
                 </PartDraw>
                 <!-- Curved Text along Arc -->
                 <PartText x="0" y="0" width="450" height="450">
-                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="18" endAngle="74" direction="CLOCKWISE" align="CENTER">
-                        <Font family="jetbrains_mono_bold" size="13" weight="BOLD" color="#ff9ece6a">
+                    <TextCircular centerX="225" centerY="225" width="356" height="356" startAngle="16" endAngle="76" direction="CLOCKWISE" align="CENTER" ellipsis="TRUE">
+                        <Font family="jetbrains_mono_bold" size="25" weight="BOLD" color="#ff9ece6a">
                             <Template><![CDATA[⚡ %s%%]]>
                                 <Parameter expression="round([COMPLICATION.RANGED_VALUE_VALUE])"/>
                             </Template>
@@ -120,14 +120,14 @@
             </Complication>
             <Complication type="SHORT_TEXT">
                 <PartDraw x="0" y="0" width="450" height="450">
-                    <Arc direction="CLOCKWISE" startAngle="18" endAngle="74" centerX="225" centerY="225" width="416" height="416">
-                        <Transform target="endAngle" value="18 + (clamp([BATTERY_PERCENT], 0, 100) / 100.0) * 56"/>
-                        <Stroke color="#ff9ece6a" cap="ROUND" thickness="8"/>
+                    <Arc direction="CLOCKWISE" startAngle="16" endAngle="76" centerX="225" centerY="225" width="416" height="416">
+                        <Transform target="endAngle" value="16 + (clamp([BATTERY_PERCENT], 0, 100) / 100.0) * 60"/>
+                        <Stroke color="#ff9ece6a" cap="ROUND" thickness="10"/>
                     </Arc>
                 </PartDraw>
                 <PartText x="0" y="0" width="450" height="450">
-                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="18" endAngle="74" direction="CLOCKWISE" align="CENTER">
-                        <Font family="jetbrains_mono_bold" size="13" weight="BOLD" color="#ff9ece6a">
+                    <TextCircular centerX="225" centerY="225" width="356" height="356" startAngle="16" endAngle="76" direction="CLOCKWISE" align="CENTER" ellipsis="TRUE">
+                        <Font family="jetbrains_mono_bold" size="25" weight="BOLD" color="#ff9ece6a">
                             <Template><![CDATA[⚡ %s]]>
                                 <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : ([BATTERY_PERCENT] + %)"/>
                             </Template>
@@ -161,23 +161,23 @@
             <BoundingArc
                 centerX="225" centerY="225"
                 width="416" height="416"
-                thickness="40"
+                thickness="44"
                 isRoundEdge="TRUE"
-                startAngle="106" endAngle="162"
+                startAngle="104" endAngle="164"
                 direction="CLOCKWISE"
                 outlinePadding="2"/>
             <Complication type="RANGED_VALUE">
                 <!-- Dynamic Gauge Track -->
                 <PartDraw x="0" y="0" width="450" height="450">
-                    <Arc direction="CLOCKWISE" startAngle="106" endAngle="162" centerX="225" centerY="225" width="416" height="416">
-                        <Transform target="endAngle" value="106 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]) ? 10000 : ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]))) * 56)"/>
-                        <Stroke color="#ffe0af68" cap="ROUND" thickness="8"/>
+                    <Arc direction="CLOCKWISE" startAngle="104" endAngle="164" centerX="225" centerY="225" width="416" height="416">
+                        <Transform target="endAngle" value="104 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]) ? 10000 : ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]))) * 60)"/>
+                        <Stroke color="#ffe0af68" cap="ROUND" thickness="10"/>
                     </Arc>
                 </PartDraw>
                 <!-- Curved Text along Arc -->
                 <PartText x="0" y="0" width="450" height="450">
-                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="162" endAngle="106" direction="COUNTER_CLOCKWISE" align="CENTER">
-                        <Font family="jetbrains_mono_bold" size="12" weight="BOLD" color="#ffe0af68">
+                    <TextCircular centerX="225" centerY="225" width="356" height="356" startAngle="164" endAngle="104" direction="COUNTER_CLOCKWISE" align="CENTER" ellipsis="TRUE">
+                        <Font family="jetbrains_mono_bold" size="24" weight="BOLD" color="#ffe0af68">
                             <Template><![CDATA[👟 %s]]>
                                 <Parameter expression="round([COMPLICATION.RANGED_VALUE_VALUE])"/>
                             </Template>
@@ -188,15 +188,15 @@
             <Complication type="SHORT_TEXT">
                 <!-- Steps Gauge Track -->
                 <PartDraw x="0" y="0" width="450" height="450">
-                    <Arc direction="CLOCKWISE" startAngle="106" endAngle="162" centerX="225" centerY="225" width="416" height="416">
-                        <Transform target="endAngle" value="106 + (clamp([STEP_COUNT], 100, 10000) / 10000.0) * 56"/>
-                        <Stroke color="#ffe0af68" cap="ROUND" thickness="8"/>
+                    <Arc direction="CLOCKWISE" startAngle="104" endAngle="164" centerX="225" centerY="225" width="416" height="416">
+                        <Transform target="endAngle" value="104 + (clamp([STEP_COUNT], 100, 10000) / 10000.0) * 60"/>
+                        <Stroke color="#ffe0af68" cap="ROUND" thickness="10"/>
                     </Arc>
                 </PartDraw>
                 <!-- Curved Text along Arc -->
                 <PartText x="0" y="0" width="450" height="450">
-                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="162" endAngle="106" direction="COUNTER_CLOCKWISE" align="CENTER">
-                        <Font family="jetbrains_mono_bold" size="12" weight="BOLD" color="#ffe0af68">
+                    <TextCircular centerX="225" centerY="225" width="356" height="356" startAngle="164" endAngle="104" direction="COUNTER_CLOCKWISE" align="CENTER" ellipsis="TRUE">
+                        <Font family="jetbrains_mono_bold" size="24" weight="BOLD" color="#ffe0af68">
                             <Template><![CDATA[👟 %s]]>
                                 <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [STEP_COUNT]"/>
                             </Template>
@@ -230,23 +230,23 @@
             <BoundingArc
                 centerX="225" centerY="225"
                 width="416" height="416"
-                thickness="40"
+                thickness="44"
                 isRoundEdge="TRUE"
-                startAngle="198" endAngle="254"
+                startAngle="196" endAngle="256"
                 direction="CLOCKWISE"
                 outlinePadding="2"/>
             <Complication type="RANGED_VALUE">
                 <!-- Dynamic Gauge Track -->
                 <PartDraw x="0" y="0" width="450" height="450">
-                    <Arc direction="CLOCKWISE" startAngle="198" endAngle="254" centerX="225" centerY="225" width="416" height="416">
-                        <Transform target="endAngle" value="198 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]) ? 150 : ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]))) * 56)"/>
-                        <Stroke color="#fff7768e" cap="ROUND" thickness="8"/>
+                    <Arc direction="CLOCKWISE" startAngle="196" endAngle="256" centerX="225" centerY="225" width="416" height="416">
+                        <Transform target="endAngle" value="196 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]) ? 150 : ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]))) * 60)"/>
+                        <Stroke color="#fff7768e" cap="ROUND" thickness="10"/>
                     </Arc>
                 </PartDraw>
                 <!-- Curved Text along Arc -->
                 <PartText x="0" y="0" width="450" height="450">
-                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="254" endAngle="198" direction="COUNTER_CLOCKWISE" align="CENTER">
-                        <Font family="jetbrains_mono_bold" size="12" weight="BOLD" color="#fff7768e">
+                    <TextCircular centerX="225" centerY="225" width="356" height="356" startAngle="256" endAngle="196" direction="COUNTER_CLOCKWISE" align="CENTER" ellipsis="TRUE">
+                        <Font family="jetbrains_mono_bold" size="24" weight="BOLD" color="#fff7768e">
                             <Template><![CDATA[❤️ %s]]>
                                 <Parameter expression="round([COMPLICATION.RANGED_VALUE_VALUE])"/>
                             </Template>
@@ -257,15 +257,14 @@
             <Complication type="SHORT_TEXT">
                 <!-- Dynamic Track -->
                 <PartDraw x="0" y="0" width="450" height="450">
-                    <Arc direction="CLOCKWISE" startAngle="198" endAngle="254" centerX="225" centerY="225" width="416" height="416">
-                        <Transform target="endAngle" value="198 + (([HEART_RATE] &gt; 40) ? ((clamp([HEART_RATE], 40, 180) - 40) / 140.0 * 56) : 24)"/>
-                        <Stroke color="#fff7768e" cap="ROUND" thickness="8"/>
+                    <Arc direction="CLOCKWISE" startAngle="196" endAngle="256" centerX="225" centerY="225" width="416" height="416">
+                        <Stroke color="#fff7768e" cap="ROUND" thickness="10"/>
                     </Arc>
                 </PartDraw>
                 <!-- Curved Text along Arc -->
                 <PartText x="0" y="0" width="450" height="450">
-                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="254" endAngle="198" direction="COUNTER_CLOCKWISE" align="CENTER">
-                        <Font family="jetbrains_mono_bold" size="12" weight="BOLD" color="#fff7768e">
+                    <TextCircular centerX="225" centerY="225" width="356" height="356" startAngle="256" endAngle="196" direction="COUNTER_CLOCKWISE" align="CENTER" ellipsis="TRUE">
+                        <Font family="jetbrains_mono_bold" size="24" weight="BOLD" color="#fff7768e">
                             <Template><![CDATA[❤️ %s]]>
                                 <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : ([HEART_RATE] &gt; 0 ? [HEART_RATE] : --)"/>
                             </Template>
@@ -299,23 +298,23 @@
             <BoundingArc
                 centerX="225" centerY="225"
                 width="416" height="416"
-                thickness="40"
+                thickness="44"
                 isRoundEdge="TRUE"
-                startAngle="286" endAngle="342"
+                startAngle="284" endAngle="344"
                 direction="CLOCKWISE"
                 outlinePadding="2"/>
             <Complication type="RANGED_VALUE">
                 <!-- Dynamic Gauge Track -->
                 <PartDraw x="0" y="0" width="450" height="450">
-                    <Arc direction="CLOCKWISE" startAngle="286" endAngle="342" centerX="225" centerY="225" width="416" height="416">
-                        <Transform target="endAngle" value="286 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]) ? 100 : ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]))) * 56)"/>
-                        <Stroke color="#ff7dcfff" cap="ROUND" thickness="8"/>
+                    <Arc direction="CLOCKWISE" startAngle="284" endAngle="344" centerX="225" centerY="225" width="416" height="416">
+                        <Transform target="endAngle" value="284 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]) ? 100 : ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]))) * 60)"/>
+                        <Stroke color="#ff7dcfff" cap="ROUND" thickness="10"/>
                     </Arc>
                 </PartDraw>
                 <!-- Curved Text along Arc -->
                 <PartText x="0" y="0" width="450" height="450">
-                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="286" endAngle="342" direction="CLOCKWISE" align="CENTER">
-                        <Font family="jetbrains_mono_bold" size="12" weight="BOLD" color="#ff7dcfff">
+                    <TextCircular centerX="225" centerY="225" width="356" height="356" startAngle="284" endAngle="344" direction="CLOCKWISE" align="CENTER" ellipsis="TRUE">
+                        <Font family="jetbrains_mono_bold" size="24" weight="BOLD" color="#ff7dcfff">
                             <Template><![CDATA[%s]]>
                                 <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : round([COMPLICATION.RANGED_VALUE_VALUE])"/>
                             </Template>
@@ -326,14 +325,14 @@
             <Complication type="SHORT_TEXT">
                 <!-- Track -->
                 <PartDraw x="0" y="0" width="450" height="450">
-                    <Arc direction="CLOCKWISE" startAngle="286" endAngle="342" centerX="225" centerY="225" width="416" height="416">
-                        <Stroke color="#ff7dcfff" cap="ROUND" thickness="8"/>
+                    <Arc direction="CLOCKWISE" startAngle="284" endAngle="344" centerX="225" centerY="225" width="416" height="416">
+                        <Stroke color="#ff7dcfff" cap="ROUND" thickness="10"/>
                     </Arc>
                 </PartDraw>
                 <!-- Curved Text along Arc -->
                 <PartText x="0" y="0" width="450" height="450">
-                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="286" endAngle="342" direction="CLOCKWISE" align="CENTER">
-                        <Font family="jetbrains_mono_bold" size="12" weight="BOLD" color="#ff7dcfff">
+                    <TextCircular centerX="225" centerY="225" width="356" height="356" startAngle="284" endAngle="344" direction="CLOCKWISE" align="CENTER" ellipsis="TRUE">
+                        <Font family="jetbrains_mono_bold" size="24" weight="BOLD" color="#ff7dcfff">
                             <Template><![CDATA[%s]]>
                                 <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [DAY_OF_WEEK_S]"/>
                             </Template>
