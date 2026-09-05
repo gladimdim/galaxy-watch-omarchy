@@ -28,33 +28,33 @@
         </Group>
 
         <!-- Omarchy Green Arch Icon (1.3x larger: 74x74) -->
-        <PartImage x="188" y="80" width="74" height="74" alpha="255">
+        <PartImage x="188" y="100" width="74" height="74" alpha="255">
             <Image resource="ic_omarchy_icon"/>
             <Variant mode="AMBIENT" target="alpha" value="80"/>
         </PartImage>
 
         <!-- Official Omarchy Pixel Art Wordmark (1.3x larger: 234x55) -->
-        <PartImage x="108" y="160" width="234" height="55" alpha="255">
+        <PartImage x="108" y="197" width="234" height="55" alpha="255">
             <Image resource="ic_omarchy_logo_white"/>
             <Variant mode="AMBIENT" target="alpha" value="130"/>
         </PartImage>
 
         <!-- Digital Clock (Interactive Mode) -->
-        <DigitalClock x="25" y="222" width="400" height="75">
+        <DigitalClock x="25" y="278" width="400" height="70">
             <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="400" height="75" alpha="255">
                 <Variant mode="AMBIENT" target="alpha" value="0"/>
-                <Font family="jetbrains_mono_bold" size="62" weight="BOLD" color="#ffffffff"/>
+                <Font family="jetbrains_mono_bold" size="58" weight="BOLD" color="#ffffffff"/>
             </TimeText>
 
             <!-- Ambient Time Display -->
             <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="400" height="75" alpha="0">
                 <Variant mode="AMBIENT" target="alpha" value="255"/>
-                <Font family="jetbrains_mono_bold" size="62" weight="NORMAL" color="#ffc0caf5"/>
+                <Font family="jetbrains_mono_bold" size="58" weight="NORMAL" color="#ffc0caf5"/>
             </TimeText>
         </DigitalClock>
 
         <!-- Date (Interactive Mode, clean without slogan) -->
-        <PartText x="25" y="302" width="400" height="28" alpha="255">
+        <PartText x="25" y="392" width="400" height="28" alpha="255">
             <Variant mode="AMBIENT" target="alpha" value="0"/>
             <Text align="CENTER">
                 <Font family="jetbrains_mono_bold" size="17" weight="NORMAL" color="#ff7aa2f7">
@@ -68,7 +68,7 @@
         </PartText>
 
         <!-- Date in Ambient Mode -->
-        <PartText x="25" y="302" width="400" height="28" alpha="0">
+        <PartText x="25" y="392" width="400" height="28" alpha="0">
             <Variant mode="AMBIENT" target="alpha" value="200"/>
             <Text align="CENTER">
                 <Font family="jetbrains_mono_bold" size="17" weight="NORMAL" color="#ff565f89">
@@ -248,7 +248,7 @@
                     <TextCircular centerX="225" centerY="225" width="356" height="356" startAngle="256" endAngle="196" direction="COUNTER_CLOCKWISE" align="CENTER" ellipsis="TRUE">
                         <Font family="jetbrains_mono_bold" size="24" weight="BOLD" color="#fff7768e">
                             <Template><![CDATA[❤️ %s]]>
-                                <Parameter expression="round([COMPLICATION.RANGED_VALUE_VALUE])"/>
+                                <Parameter expression="([COMPLICATION.TEXT] != null &amp;&amp; [COMPLICATION.TEXT] != 'None' &amp;&amp; [COMPLICATION.TEXT] != 'false' &amp;&amp; [COMPLICATION.TEXT] != '0') ? [COMPLICATION.TEXT] : '--'"/>
                             </Template>
                         </Font>
                     </TextCircular>
@@ -266,7 +266,7 @@
                     <TextCircular centerX="225" centerY="225" width="356" height="356" startAngle="256" endAngle="196" direction="COUNTER_CLOCKWISE" align="CENTER" ellipsis="TRUE">
                         <Font family="jetbrains_mono_bold" size="24" weight="BOLD" color="#fff7768e">
                             <Template><![CDATA[❤️ %s]]>
-                                <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : ([HEART_RATE] &gt; 0 ? [HEART_RATE] : --)"/>
+                                <Parameter expression="([COMPLICATION.TEXT] != null &amp;&amp; [COMPLICATION.TEXT] != 'None' &amp;&amp; [COMPLICATION.TEXT] != 'false' &amp;&amp; [COMPLICATION.TEXT] != '0') ? [COMPLICATION.TEXT] : '--'"/>
                             </Template>
                         </Font>
                     </TextCircular>
@@ -293,7 +293,7 @@
             supportedTypes="RANGED_VALUE SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE EMPTY"
             x="0" y="0" width="450" height="450">
             <DefaultProviderPolicy
-                defaultSystemProvider="DAY_OF_WEEK"
+                defaultSystemProvider="DATE"
                 defaultSystemProviderType="SHORT_TEXT"/>
             <BoundingArc
                 centerX="225" centerY="225"
@@ -316,7 +316,7 @@
                     <TextCircular centerX="225" centerY="225" width="356" height="356" startAngle="284" endAngle="344" direction="CLOCKWISE" align="CENTER" ellipsis="TRUE">
                         <Font family="jetbrains_mono_bold" size="24" weight="BOLD" color="#ff7dcfff">
                             <Template><![CDATA[%s]]>
-                                <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : round([COMPLICATION.RANGED_VALUE_VALUE])"/>
+                                <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : ([COMPLICATION.TITLE] != null ? [COMPLICATION.TITLE] : [DAY_OF_WEEK_S])"/>
                             </Template>
                         </Font>
                     </TextCircular>
@@ -334,7 +334,7 @@
                     <TextCircular centerX="225" centerY="225" width="356" height="356" startAngle="284" endAngle="344" direction="CLOCKWISE" align="CENTER" ellipsis="TRUE">
                         <Font family="jetbrains_mono_bold" size="24" weight="BOLD" color="#ff7dcfff">
                             <Template><![CDATA[%s]]>
-                                <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [DAY_OF_WEEK_S]"/>
+                                <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : ([COMPLICATION.TITLE] != null ? [COMPLICATION.TITLE] : [DAY_OF_WEEK_S])"/>
                             </Template>
                         </Font>
                     </TextCircular>
