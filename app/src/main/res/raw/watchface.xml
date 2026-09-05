@@ -4,16 +4,18 @@
     <Metadata key="PREVIEW_TIME" value="10:08:32"/>
 
     <Scene backgroundColor="#ff000000">
-        <!-- Subtle Dial Accents -->
-        <PartDraw x="0" y="0" width="450" height="450">
+        <!-- Background Accent Rings -->
+        <Group x="0" y="0" width="450" height="450" name="accents" alpha="255">
             <Variant mode="AMBIENT" target="alpha" value="0"/>
-            <Ellipse x="25" y="25" width="400" height="400">
-                <Stroke thickness="1" color="#ff24283b"/>
-            </Ellipse>
-            <Ellipse x="55" y="55" width="340" height="340">
-                <Stroke thickness="1" color="#ff1f2335"/>
-            </Ellipse>
-        </PartDraw>
+            <PartDraw x="0" y="0" width="450" height="450">
+                <Ellipse x="25" y="25" width="400" height="400">
+                    <Stroke thickness="1" color="#ff24283b"/>
+                </Ellipse>
+                <Ellipse x="55" y="55" width="340" height="340">
+                    <Stroke thickness="1" color="#ff1f2335"/>
+                </Ellipse>
+            </PartDraw>
+        </Group>
 
         <!-- Omarchy Green Arch Icon -->
         <PartImage x="197" y="98" width="56" height="56" alpha="255">
@@ -34,7 +36,7 @@
                 <Font family="SYNC_TO_DEVICE" size="62" weight="BOLD" color="#ffffffff"/>
             </TimeText>
 
-            <!-- Ambient Time Display (OLED Battery Saver) -->
+            <!-- Ambient Time Display -->
             <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="25" y="216" width="400" height="75" alpha="0">
                 <Variant mode="AMBIENT" target="alpha" value="255"/>
                 <Font family="SYNC_TO_DEVICE" size="62" weight="NORMAL" color="#ffc0caf5"/>
@@ -54,10 +56,11 @@
             <Variant mode="AMBIENT" target="alpha" value="0"/>
             <Text align="CENTER">
                 <Font family="SYNC_TO_DEVICE" size="13" weight="NORMAL" color="#ff7aa2f7">
-                    <Template><![CDATA[%s %02d %s  •  BE THE OMARCH]]></Template>
-                    <Parameter expression="[DAY_OF_WEEK_S]"/>
-                    <Parameter expression="[DAY_IN_MONTH]"/>
-                    <Parameter expression="[MONTH_S]"/>
+                    <Template><![CDATA[%s %02d %s  •  BE THE OMARCH]]>
+                        <Parameter expression="[DAY_OF_WEEK_S]"/>
+                        <Parameter expression="[DAY_IN_MONTH]"/>
+                        <Parameter expression="[MONTH_S]"/>
+                    </Template>
                 </Font>
             </Text>
         </PartText>
@@ -67,10 +70,11 @@
             <Variant mode="AMBIENT" target="alpha" value="200"/>
             <Text align="CENTER">
                 <Font family="SYNC_TO_DEVICE" size="13" weight="NORMAL" color="#ff565f89">
-                    <Template><![CDATA[%s %02d %s]]></Template>
-                    <Parameter expression="[DAY_OF_WEEK_S]"/>
-                    <Parameter expression="[DAY_IN_MONTH]"/>
-                    <Parameter expression="[MONTH_S]"/>
+                    <Template><![CDATA[%s %02d %s]]>
+                        <Parameter expression="[DAY_OF_WEEK_S]"/>
+                        <Parameter expression="[DAY_IN_MONTH]"/>
+                        <Parameter expression="[MONTH_S]"/>
+                    </Template>
                 </Font>
             </Text>
         </PartText>
@@ -79,7 +83,7 @@
         <ComplicationSlot
             slotId="1"
             displayName="@string/battery_complication_label"
-            supportedTypes="RANGED_VALUE SHORT_TEXT SMALL_IMAGE MONOCHROMATIC_IMAGE EMPTY"
+            supportedTypes="RANGED_VALUE SHORT_TEXT EMPTY"
             x="165" y="32" width="120" height="56">
             <DefaultProviderPolicy
                 defaultSystemProvider="WATCH_BATTERY"
@@ -89,8 +93,9 @@
                 <PartText x="0" y="28" width="120" height="24">
                     <Text align="CENTER">
                         <Font family="SYNC_TO_DEVICE" size="13" weight="BOLD" color="#ff9ece6a">
-                            <Template><![CDATA[⚡ %d%%]]></Template>
-                            <Parameter expression="round([COMPLICATION.RANGED_VALUE_VALUE])"/>
+                            <Template><![CDATA[⚡ %s%%]]>
+                                <Parameter expression="round([COMPLICATION.RANGED_VALUE_VALUE])"/>
+                            </Template>
                         </Font>
                     </Text>
                 </PartText>
@@ -99,19 +104,21 @@
                 <PartText x="0" y="16" width="120" height="24">
                     <Text align="CENTER">
                         <Font family="SYNC_TO_DEVICE" size="13" weight="BOLD" color="#ff9ece6a">
-                            <Template><![CDATA[⚡ %s]]></Template>
-                            <Parameter expression="[COMPLICATION.TEXT]"/>
+                            <Template><![CDATA[⚡ %s]]>
+                                <Parameter expression="[COMPLICATION.TEXT]"/>
+                            </Template>
                         </Font>
                     </Text>
                 </PartText>
             </Complication>
+            <Complication type="EMPTY"/>
         </ComplicationSlot>
 
         <!-- BOTTOM COMPLICATION: Steps / Activity (Slot 2) -->
         <ComplicationSlot
             slotId="2"
             displayName="@string/steps_complication_label"
-            supportedTypes="RANGED_VALUE GOAL_PROGRESS SHORT_TEXT SMALL_IMAGE MONOCHROMATIC_IMAGE EMPTY"
+            supportedTypes="SHORT_TEXT RANGED_VALUE EMPTY"
             x="165" y="362" width="120" height="56">
             <DefaultProviderPolicy
                 defaultSystemProvider="STEP_COUNT"
@@ -121,8 +128,9 @@
                 <PartText x="0" y="16" width="120" height="24">
                     <Text align="CENTER">
                         <Font family="SYNC_TO_DEVICE" size="13" weight="BOLD" color="#ffe0af68">
-                            <Template><![CDATA[👟 %s STEPS]]></Template>
-                            <Parameter expression="[COMPLICATION.TEXT]"/>
+                            <Template><![CDATA[👟 %s STEPS]]>
+                                <Parameter expression="[COMPLICATION.TEXT]"/>
+                            </Template>
                         </Font>
                     </Text>
                 </PartText>
@@ -131,27 +139,30 @@
                 <PartText x="0" y="16" width="120" height="24">
                     <Text align="CENTER">
                         <Font family="SYNC_TO_DEVICE" size="13" weight="BOLD" color="#ffe0af68">
-                            <Template><![CDATA[👟 %d]]></Template>
-                            <Parameter expression="round([COMPLICATION.RANGED_VALUE_VALUE])"/>
+                            <Template><![CDATA[👟 %s]]>
+                                <Parameter expression="round([COMPLICATION.RANGED_VALUE_VALUE])"/>
+                            </Template>
                         </Font>
                     </Text>
                 </PartText>
             </Complication>
+            <Complication type="EMPTY"/>
         </ComplicationSlot>
 
         <!-- LEFT COMPLICATION: Heart Rate / Health (Slot 3) -->
         <ComplicationSlot
             slotId="3"
             displayName="@string/heart_rate_complication_label"
-            supportedTypes="SHORT_TEXT SMALL_IMAGE MONOCHROMATIC_IMAGE EMPTY"
+            supportedTypes="SHORT_TEXT SMALL_IMAGE EMPTY"
             x="20" y="196" width="90" height="56">
             <BoundingOval x="0" y="0" width="90" height="56" outlinePadding="2.0"/>
             <Complication type="SHORT_TEXT">
                 <PartText x="0" y="16" width="90" height="24">
                     <Text align="CENTER">
                         <Font family="SYNC_TO_DEVICE" size="13" weight="BOLD" color="#fff7768e">
-                            <Template><![CDATA[♥ %s]]></Template>
-                            <Parameter expression="[COMPLICATION.TEXT]"/>
+                            <Template><![CDATA[♥ %s]]>
+                                <Parameter expression="[COMPLICATION.TEXT]"/>
+                            </Template>
                         </Font>
                     </Text>
                 </PartText>
@@ -161,21 +172,23 @@
                     <Image resource="[COMPLICATION.SMALL_IMAGE]"/>
                 </PartImage>
             </Complication>
+            <Complication type="EMPTY"/>
         </ComplicationSlot>
 
         <!-- RIGHT COMPLICATION: Weather / Next Event (Slot 4) -->
         <ComplicationSlot
             slotId="4"
             displayName="@string/weather_complication_label"
-            supportedTypes="SHORT_TEXT SMALL_IMAGE MONOCHROMATIC_IMAGE EMPTY"
+            supportedTypes="SHORT_TEXT SMALL_IMAGE EMPTY"
             x="340" y="196" width="90" height="56">
             <BoundingOval x="0" y="0" width="90" height="56" outlinePadding="2.0"/>
             <Complication type="SHORT_TEXT">
                 <PartText x="0" y="16" width="90" height="24">
                     <Text align="CENTER">
                         <Font family="SYNC_TO_DEVICE" size="13" weight="BOLD" color="#ff7dcfff">
-                            <Template><![CDATA[%s]]></Template>
-                            <Parameter expression="[COMPLICATION.TEXT]"/>
+                            <Template><![CDATA[%s]]>
+                                <Parameter expression="[COMPLICATION.TEXT]"/>
+                            </Template>
                         </Font>
                     </Text>
                 </PartText>
@@ -185,6 +198,7 @@
                     <Image resource="[COMPLICATION.SMALL_IMAGE]"/>
                 </PartImage>
             </Complication>
+            <Complication type="EMPTY"/>
         </ComplicationSlot>
     </Scene>
 </WatchFace>
