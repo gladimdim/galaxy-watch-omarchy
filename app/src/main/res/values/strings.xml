@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Omarchy Watch Face</string>
+    <string name="watch_face_name">Omarchy</string>
+    <string name="battery_complication_label">Battery</string>
+    <string name="steps_complication_label">Steps</string>
+    <string name="heart_rate_complication_label">Heart Rate</string>
+    <string name="weather_complication_label">Weather</string>
+</resources>
