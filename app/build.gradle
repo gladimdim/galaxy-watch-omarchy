@@ -31,3 +31,35 @@ android {
         }
     }
 }
+
+afterEvaluate {
+    tasks.register('finalizeWatchFaceBundle') {
+        dependsOn 'signReleaseBundle'
+        doLast {
+            def aabFile = file("build/outputs/bundle/release/app-release.aab")
+            if (aabFile.exists()) {
+                exec {
+                    commandLine 'zip', '-d', aabFile.absolutePath, 'base/dex/*'
+                    ignoreExitValue = true
+                }
+                exec {
+                    commandLine 'zip', '-d', aabFile.absolutePath, 'META-INF/*'
+                    ignoreExitValue = true
+                }
+                exec {
+                    commandLine 'jarsigner',
+                        '-keystore', file('../release.keystore').absolutePath,
+                        '-storepass', 'omarchy_release_key_2026',
+                        '-keypass', 'omarchy_release_key_2026',
+                        aabFile.absolutePath,
+                        'omarchy'
+                }
+                println "Successfully finalized Watch Face Format AAB (removed dex files and re-signed)."
+            }
+        }
+    }
+
+    tasks.named('bundleRelease').configure {
+        finalizedBy 'finalizeWatchFaceBundle'
+    }
+}
