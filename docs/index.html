@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omarchy Watch Face for Wear OS</title>
+    <style>
+        :root {
+            --bg-color: #0c0e14;
+            --card-bg: #161922;
+            --text-color: #c0caf5;
+            --heading-color: #ffffff;
+            --accent-green: #9ece6a;
+            --accent-blue: #7aa2f7;
+            --dim-color: #565f89;
+            --border-color: #24283b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+        }
+        .logo-img {
+            max-width: 220px;
+            height: auto;
+            margin-bottom: 1.5rem;
+        }
+        .watch-preview {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 4px solid var(--border-color);
+            box-shadow: 0 0 30px rgba(158, 206, 106, 0.2);
+            margin: 1.5rem auto;
+            display: block;
+            background: #000;
+        }
+        h1 {
+            color: var(--heading-color);
+            font-size: 2.2rem;
+            margin: 0.5rem 0;
+        }
+        p.subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+            margin-top: 0;
+        }
+        .features {
+            text-align: left;
+            max-width: 600px;
+            margin: 2rem auto;
+            background: #11141c;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        .features li {
+            margin-bottom: 0.75rem;
+            color: #a9b1d6;
+        }
+        .btn-group {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .btn-primary {
+            background-color: var(--accent-green);
+            color: #0c0e14;
+        }
+        .btn-primary:hover {
+            background-color: #b5e87a;
+        }
+        .btn-secondary {
+            background-color: #1e2230;
+            color: var(--accent-blue);
+            border: 1px solid var(--border-color);
+        }
+        .btn-secondary:hover {
+            background-color: #272d3f;
+        }
+        .footer {
+            margin-top: 2.5rem;
+            font-size: 0.9rem;
+            color: var(--dim-color);
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+        .footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="images/ic_omarchy_logo_white.png" alt="Omarchy Logo" class="logo-img">
+        <h1>Omarchy Watch Face</h1>
+        <p class="subtitle">Minimalist Retro Pixel-Art Watch Face for Wear OS</p>
+
+        <img src="images/omarchy_watchface_live.png" alt="Omarchy Watch Face on Galaxy Watch Ultra" class="watch-preview">
+
+        <div class="features">
+            <h3 style="color: var(--accent-green); margin-top: 0;">Key Highlights</h3>
+            <ul>
+                <li><strong>Pure Watch Face Format (WFF v2):</strong> 100% declarative XML with zero executable background code for maximum battery life.</li>
+                <li><strong>Authentic Typography:</strong> Features the official Omarchy wordmark and matched block pixel font.</li>
+                <li><strong>4 Radial Complications:</strong> Battery %, Step Counter, Heart Rate, and Calendar/Weather wrapping seamlessly around the bezel.</li>
+                <li><strong>Always-On Display (AOD):</strong> Pure black OLED power-saving ambient mode.</li>
+                <li><strong>100% Private:</strong> Zero trackers, zero analytics, zero data collection.</li>
+            </ul>
+        </div>
+
+        <div class="btn-group">
+            <a href="https://github.com/gladimdim/galaxy-watch-omarchy" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            <a href="privacy.html" class="btn btn-secondary">Privacy Policy</a>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 Omarchy Watch Face. Released under the MIT License.</p>
+            <p><a href="privacy.html">Privacy Policy</a> &bull; <a href="https://github.com/gladimdim/galaxy-watch-omarchy">GitHub Repository</a></p>
+        </div>
+    </div>
+</body>
+</html>

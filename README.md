@@ -1,9 +1,17 @@
 # ⌚ Omarchy Galaxy Watch Face
 
 > **"Beautiful, Fun & Agentic Linux" on your wrist.**  
-> A declarative, battery-optimized Wear OS watch face crafted in official **Watch Face Format (WFF)** for modern Samsung Galaxy Watch models.
+> A declarative, battery-optimized Wear OS watch face crafted in official **Watch Face Format (WFF v2)** for modern Samsung Galaxy Watch models.
 
-![Omarchy Watch Face Showcase](preview/galaxy_watch_omarchy_showcase.png)
+<p align="center">
+  <img src="preview/omarchy_watchface_live.png" alt="Omarchy Watch Face Live on Galaxy Watch Ultra" width="360">
+</p>
+
+<p align="center">
+  <a href="https://gladimdim.github.io/galaxy-watch-omarchy/"><strong>🌐 Live Website</strong></a> &bull;
+  <a href="https://gladimdim.github.io/galaxy-watch-omarchy/privacy.html"><strong>🔒 Privacy Policy</strong></a> &bull;
+  <a href="#-installing-on-your-galaxy-watch-step-by-step"><strong>📲 Installation Guide</strong></a>
+</p>
 
 ---
 

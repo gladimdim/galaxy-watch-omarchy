@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Omarchy Watch Face</title>
+    <style>
+        :root {
+            --bg-color: #0c0e14;
+            --card-bg: #161922;
+            --text-color: #c0caf5;
+            --heading-color: #ffffff;
+            --accent-green: #9ece6a;
+            --accent-blue: #7aa2f7;
+            --dim-color: #565f89;
+            --border-color: #24283b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+        h1, h2, h3 {
+            color: var(--heading-color);
+            letter-spacing: -0.02em;
+        }
+        h1 {
+            color: var(--accent-green);
+            font-size: 2rem;
+            margin-top: 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+        h2 {
+            font-size: 1.3rem;
+            margin-top: 1.8rem;
+            color: var(--accent-blue);
+        }
+        p, li {
+            font-size: 1rem;
+            color: #a9b1d6;
+        }
+        ul {
+            padding-left: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .badge {
+            display: inline-block;
+            background: #1e2230;
+            color: var(--accent-green);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+        }
+        .footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--dim-color);
+        }
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="badge">Zero Data Collection Guarantee</span>
+        <h1>Privacy Policy for Omarchy Watch Face</h1>
+        <p><strong>Effective Date:</strong> September 5, 2026</p>
+        <p><strong>Application:</strong> Omarchy Watch Face (<code>org.omarchy.watchface</code>)</p>
+
+        <h2>1. Overview</h2>
+        <p>
+            Omarchy Watch Face is built as a pure, privacy-first, declarative watch face for Wear OS smartwatches. We believe your wrist data is strictly yours. This watch face does not collect, record, track, transmit, or share any personal, biometric, or usage data.
+        </p>
+
+        <h2>2. No Code Execution &amp; Pure Watch Face Format</h2>
+        <p>
+            This watch face is implemented exclusively using Google’s modern <strong>Watch Face Format (WFF v2)</strong> with <code>hasCode="false"</code>. 
+        </p>
+        <ul>
+            <li>There is <strong>no executable Kotlin, Java, or C/C++ application code</strong> running in the background.</li>
+            <li>There are <strong>no analytics SDKs</strong>, no advertising frameworks, and no crash reporting telemetry.</li>
+            <li>The watch face does not request or possess the <code>android.permission.INTERNET</code> permission, meaning it is technically incapable of transmitting any data over the network.</li>
+        </ul>
+
+        <h2>3. Sensor &amp; Health Data (Complications)</h2>
+        <p>
+            When complications such as battery status, step count, or heart rate are displayed:
+        </p>
+        <ul>
+            <li>Data is provided strictly by the Wear OS operating system (such as Samsung Health or Google Health Services) through standard on-device system complication providers.</li>
+            <li>All calculations and visual renderings occur locally in hardware on your watch's display engine.</li>
+            <li>No sensor readings are retained, logged, or sent anywhere.</li>
+        </ul>
+
+        <h2>4. Third-Party Services</h2>
+        <p>
+            Omarchy Watch Face does not use or integrate any third-party services, cloud APIs, tracking pixels, or external databases.
+        </p>
+
+        <h2>5. Children's Privacy</h2>
+        <p>
+            Our application does not collect any personal information from anyone, including children under the age of 13.
+        </p>
+
+        <h2>6. Open Source Verification</h2>
+        <p>
+            The entire source code of Omarchy Watch Face is open source and publicly inspectable on GitHub at:
+            <br>
+            <a href="https://github.com/gladimdim/galaxy-watch-omarchy" target="_blank" rel="noopener noreferrer">https://github.com/gladimdim/galaxy-watch-omarchy</a>
+        </p>
+
+        <h2>7. Contact</h2>
+        <p>
+            If you have any questions or feedback regarding this privacy policy, you may open an issue on GitHub or reach out via our repository:
+            <br>
+            <a href="https://github.com/gladimdim/galaxy-watch-omarchy/issues" target="_blank" rel="noopener noreferrer">GitHub Issues: gladimdim/galaxy-watch-omarchy</a>
+        </p>
+
+        <div class="footer">
+            &copy; 2026 Omarchy Watch Face. Released under the MIT License.
+        </div>
+    </div>
+</body>
+</html>
