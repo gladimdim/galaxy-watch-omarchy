@@ -40,16 +40,16 @@
         </PartImage>
 
         <!-- Digital Clock (Interactive Mode) -->
-        <DigitalClock x="25" y="278" width="400" height="70">
-            <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="400" height="75" alpha="255">
+        <DigitalClock x="25" y="276" width="400" height="76">
+            <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="400" height="76" alpha="255">
                 <Variant mode="AMBIENT" target="alpha" value="0"/>
-                <Font family="jetbrains_mono_bold" size="58" weight="BOLD" color="#ffffffff"/>
+                <Font family="omarchy" size="70" weight="NORMAL" color="#ffffffff"/>
             </TimeText>
 
             <!-- Ambient Time Display -->
-            <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="400" height="75" alpha="0">
+            <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="400" height="76" alpha="0">
                 <Variant mode="AMBIENT" target="alpha" value="255"/>
-                <Font family="jetbrains_mono_bold" size="58" weight="NORMAL" color="#ffc0caf5"/>
+                <Font family="omarchy" size="70" weight="NORMAL" color="#ffc0caf5"/>
             </TimeText>
         </DigitalClock>
 
