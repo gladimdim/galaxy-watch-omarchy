@@ -30,24 +30,16 @@
         </PartImage>
 
         <!-- Digital Clock (Interactive Mode) -->
-        <DigitalClock x="25" y="216" width="400" height="75">
-            <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="25" y="216" width="400" height="75" alpha="255">
+        <DigitalClock x="25" y="215" width="400" height="75">
+            <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="400" height="75" alpha="255">
                 <Variant mode="AMBIENT" target="alpha" value="0"/>
-                <Font family="SYNC_TO_DEVICE" size="62" weight="BOLD" color="#ffffffff"/>
+                <Font family="jetbrains_mono_bold" size="62" weight="BOLD" color="#ffffffff"/>
             </TimeText>
 
             <!-- Ambient Time Display -->
-            <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="25" y="216" width="400" height="75" alpha="0">
+            <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="400" height="75" alpha="0">
                 <Variant mode="AMBIENT" target="alpha" value="255"/>
-                <Font family="SYNC_TO_DEVICE" size="62" weight="NORMAL" color="#ffc0caf5"/>
-            </TimeText>
-        </DigitalClock>
-
-        <!-- Seconds Display (Interactive Only) -->
-        <DigitalClock x="306" y="244" width="70" height="30">
-            <TimeText format=":ss" align="LEFT" x="306" y="244" width="70" height="30" alpha="255">
-                <Variant mode="AMBIENT" target="alpha" value="0"/>
-                <Font family="SYNC_TO_DEVICE" size="18" weight="BOLD" color="#ff9ece6a"/>
+                <Font family="jetbrains_mono_bold" size="62" weight="NORMAL" color="#ffc0caf5"/>
             </TimeText>
         </DigitalClock>
 
@@ -55,10 +47,10 @@
         <PartText x="25" y="294" width="400" height="28" alpha="255">
             <Variant mode="AMBIENT" target="alpha" value="0"/>
             <Text align="CENTER">
-                <Font family="SYNC_TO_DEVICE" size="13" weight="NORMAL" color="#ff7aa2f7">
-                    <Template><![CDATA[%s %02d %s  •  BE THE OMARCH]]>
+                <Font family="jetbrains_mono_bold" size="13" weight="NORMAL" color="#ff7aa2f7">
+                    <Template><![CDATA[%s %d %s  •  BE THE OMARCH]]>
                         <Parameter expression="[DAY_OF_WEEK_S]"/>
-                        <Parameter expression="[DAY_IN_MONTH]"/>
+                        <Parameter expression="[DAY]"/>
                         <Parameter expression="[MONTH_S]"/>
                     </Template>
                 </Font>
@@ -69,10 +61,10 @@
         <PartText x="25" y="294" width="400" height="28" alpha="0">
             <Variant mode="AMBIENT" target="alpha" value="200"/>
             <Text align="CENTER">
-                <Font family="SYNC_TO_DEVICE" size="13" weight="NORMAL" color="#ff565f89">
-                    <Template><![CDATA[%s %02d %s]]>
+                <Font family="jetbrains_mono_bold" size="13" weight="NORMAL" color="#ff565f89">
+                    <Template><![CDATA[%s %d %s]]>
                         <Parameter expression="[DAY_OF_WEEK_S]"/>
-                        <Parameter expression="[DAY_IN_MONTH]"/>
+                        <Parameter expression="[DAY]"/>
                         <Parameter expression="[MONTH_S]"/>
                     </Template>
                 </Font>
@@ -160,8 +152,8 @@
                 <PartText x="0" y="16" width="90" height="24">
                     <Text align="CENTER">
                         <Font family="SYNC_TO_DEVICE" size="13" weight="BOLD" color="#fff7768e">
-                            <Template><![CDATA[♥ %s]]>
-                                <Parameter expression="[COMPLICATION.TEXT]"/>
+                            <Template><![CDATA[%s]]>
+                                <Parameter expression="[COMPLICATION.TEXT] != null && [COMPLICATION.TEXT] != 'None' ? ('♥ ' + [COMPLICATION.TEXT]) : ''"/>
                             </Template>
                         </Font>
                     </Text>
@@ -187,7 +179,7 @@
                     <Text align="CENTER">
                         <Font family="SYNC_TO_DEVICE" size="13" weight="BOLD" color="#ff7dcfff">
                             <Template><![CDATA[%s]]>
-                                <Parameter expression="[COMPLICATION.TEXT]"/>
+                                <Parameter expression="[COMPLICATION.TEXT] != null && [COMPLICATION.TEXT] != 'None' ? [COMPLICATION.TEXT] : ''"/>
                             </Template>
                         </Font>
                     </Text>
