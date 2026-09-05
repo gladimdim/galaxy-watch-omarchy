@@ -14,11 +14,20 @@ android {
         versionName "1.0.0"
     }
 
+    signingConfigs {
+        release {
+            storeFile file("../release.keystore")
+            storePassword "omarchy_release_key_2026"
+            keyAlias "omarchy"
+            keyPassword "omarchy_release_key_2026"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             shrinkResources false
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 }
