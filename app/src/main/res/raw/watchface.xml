@@ -4,33 +4,43 @@
     <Metadata key="PREVIEW_TIME" value="10:08:32"/>
 
     <Scene backgroundColor="#ff000000">
-        <!-- Background Accent Rings -->
-        <Group x="0" y="0" width="450" height="450" name="accents" alpha="255">
+        <!-- 4 Radial Framework Tracks around the circular display -->
+        <Group x="0" y="0" width="450" height="450" name="radial_framework" alpha="255">
             <Variant mode="AMBIENT" target="alpha" value="0"/>
             <PartDraw x="0" y="0" width="450" height="450">
-                <Ellipse x="25" y="25" width="400" height="400">
-                    <Stroke thickness="1" color="#ff24283b"/>
-                </Ellipse>
-                <Ellipse x="55" y="55" width="340" height="340">
-                    <Stroke thickness="1" color="#ff1f2335"/>
-                </Ellipse>
+                <!-- Top-Right Radial Track (Battery: 18° to 74°) -->
+                <Arc direction="CLOCKWISE" startAngle="18" endAngle="74" centerX="225" centerY="225" width="416" height="416">
+                    <Stroke color="#359ece6a" cap="ROUND" thickness="8"/>
+                </Arc>
+                <!-- Bottom-Right Radial Track (Steps: 106° to 162°) -->
+                <Arc direction="CLOCKWISE" startAngle="106" endAngle="162" centerX="225" centerY="225" width="416" height="416">
+                    <Stroke color="#35e0af68" cap="ROUND" thickness="8"/>
+                </Arc>
+                <!-- Bottom-Left Radial Track (Heart/Health: 198° to 254°) -->
+                <Arc direction="CLOCKWISE" startAngle="198" endAngle="254" centerX="225" centerY="225" width="416" height="416">
+                    <Stroke color="#35f7768e" cap="ROUND" thickness="8"/>
+                </Arc>
+                <!-- Top-Left Radial Track (Weather/Events: 286° to 342°) -->
+                <Arc direction="CLOCKWISE" startAngle="286" endAngle="342" centerX="225" centerY="225" width="416" height="416">
+                    <Stroke color="#357dcfff" cap="ROUND" thickness="8"/>
+                </Arc>
             </PartDraw>
         </Group>
 
-        <!-- Omarchy Green Arch Icon -->
-        <PartImage x="197" y="98" width="56" height="56" alpha="255">
+        <!-- Omarchy Green Arch Icon (1.3x larger: 74x74) -->
+        <PartImage x="188" y="80" width="74" height="74" alpha="255">
             <Image resource="ic_omarchy_icon"/>
-            <Variant mode="AMBIENT" target="alpha" value="70"/>
+            <Variant mode="AMBIENT" target="alpha" value="80"/>
         </PartImage>
 
-        <!-- Official Omarchy Pixel Art Wordmark -->
-        <PartImage x="135" y="165" width="180" height="42" alpha="255">
+        <!-- Official Omarchy Pixel Art Wordmark (1.3x larger: 234x55) -->
+        <PartImage x="108" y="160" width="234" height="55" alpha="255">
             <Image resource="ic_omarchy_logo_white"/>
-            <Variant mode="AMBIENT" target="alpha" value="120"/>
+            <Variant mode="AMBIENT" target="alpha" value="130"/>
         </PartImage>
 
         <!-- Digital Clock (Interactive Mode) -->
-        <DigitalClock x="25" y="215" width="400" height="75">
+        <DigitalClock x="25" y="222" width="400" height="75">
             <TimeText format="hh:mm" hourFormat="SYNC_TO_DEVICE" align="CENTER" x="0" y="0" width="400" height="75" alpha="255">
                 <Variant mode="AMBIENT" target="alpha" value="0"/>
                 <Font family="jetbrains_mono_bold" size="62" weight="BOLD" color="#ffffffff"/>
@@ -43,25 +53,11 @@
             </TimeText>
         </DigitalClock>
 
-        <!-- Date & Slogan (Interactive Mode) -->
-        <PartText x="25" y="294" width="400" height="28" alpha="255">
+        <!-- Date (Interactive Mode, clean without slogan) -->
+        <PartText x="25" y="302" width="400" height="28" alpha="255">
             <Variant mode="AMBIENT" target="alpha" value="0"/>
             <Text align="CENTER">
-                <Font family="jetbrains_mono_bold" size="13" weight="NORMAL" color="#ff7aa2f7">
-                    <Template><![CDATA[%s %d %s  •  BE THE OMARCH]]>
-                        <Parameter expression="[DAY_OF_WEEK_S]"/>
-                        <Parameter expression="[DAY]"/>
-                        <Parameter expression="[MONTH_S]"/>
-                    </Template>
-                </Font>
-            </Text>
-        </PartText>
-
-        <!-- Date in Ambient Mode -->
-        <PartText x="25" y="294" width="400" height="28" alpha="0">
-            <Variant mode="AMBIENT" target="alpha" value="200"/>
-            <Text align="CENTER">
-                <Font family="jetbrains_mono_bold" size="13" weight="NORMAL" color="#ff565f89">
+                <Font family="jetbrains_mono_bold" size="14" weight="NORMAL" color="#ff7aa2f7">
                     <Template><![CDATA[%s %d %s]]>
                         <Parameter expression="[DAY_OF_WEEK_S]"/>
                         <Parameter expression="[DAY]"/>
@@ -71,122 +67,287 @@
             </Text>
         </PartText>
 
-        <!-- TOP COMPLICATION: Battery (Slot 1) -->
+        <!-- Date in Ambient Mode -->
+        <PartText x="25" y="302" width="400" height="28" alpha="0">
+            <Variant mode="AMBIENT" target="alpha" value="200"/>
+            <Text align="CENTER">
+                <Font family="jetbrains_mono_bold" size="14" weight="NORMAL" color="#ff565f89">
+                    <Template><![CDATA[%s %d %s]]>
+                        <Parameter expression="[DAY_OF_WEEK_S]"/>
+                        <Parameter expression="[DAY]"/>
+                        <Parameter expression="[MONTH_S]"/>
+                    </Template>
+                </Font>
+            </Text>
+        </PartText>
+
+        <!-- RADIAL COMPLICATION 1: TOP-RIGHT (Battery) -->
         <ComplicationSlot
             slotId="1"
+            isCustomizable="TRUE"
             displayName="@string/battery_complication_label"
-            supportedTypes="RANGED_VALUE SHORT_TEXT EMPTY"
-            x="165" y="32" width="120" height="56">
+            supportedTypes="RANGED_VALUE SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE EMPTY"
+            x="0" y="0" width="450" height="450">
             <DefaultProviderPolicy
                 defaultSystemProvider="WATCH_BATTERY"
                 defaultSystemProviderType="RANGED_VALUE"/>
-            <BoundingOval x="0" y="0" width="120" height="56" outlinePadding="2.0"/>
+            <BoundingArc
+                centerX="225" centerY="225"
+                width="416" height="416"
+                thickness="40"
+                isRoundEdge="TRUE"
+                startAngle="18" endAngle="74"
+                direction="CLOCKWISE"
+                outlinePadding="2"/>
             <Complication type="RANGED_VALUE">
-                <PartText x="0" y="28" width="120" height="24">
-                    <Text align="CENTER">
-                        <Font family="SYNC_TO_DEVICE" size="13" weight="BOLD" color="#ff9ece6a">
+                <!-- Dynamic Gauge Track -->
+                <PartDraw x="0" y="0" width="450" height="450">
+                    <Arc direction="CLOCKWISE" startAngle="18" endAngle="74" centerX="225" centerY="225" width="416" height="416">
+                        <Transform target="endAngle" value="18 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]) ? 100 : ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]))) * 56)"/>
+                        <Stroke color="#ff9ece6a" cap="ROUND" thickness="8"/>
+                    </Arc>
+                </PartDraw>
+                <!-- Curved Text along Arc -->
+                <PartText x="0" y="0" width="450" height="450">
+                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="18" endAngle="74" direction="CLOCKWISE" align="CENTER">
+                        <Font family="jetbrains_mono_bold" size="13" weight="BOLD" color="#ff9ece6a">
                             <Template><![CDATA[⚡ %s%%]]>
                                 <Parameter expression="round([COMPLICATION.RANGED_VALUE_VALUE])"/>
                             </Template>
                         </Font>
-                    </Text>
+                    </TextCircular>
                 </PartText>
             </Complication>
             <Complication type="SHORT_TEXT">
-                <PartText x="0" y="16" width="120" height="24">
-                    <Text align="CENTER">
-                        <Font family="SYNC_TO_DEVICE" size="13" weight="BOLD" color="#ff9ece6a">
+                <PartDraw x="0" y="0" width="450" height="450">
+                    <Arc direction="CLOCKWISE" startAngle="18" endAngle="74" centerX="225" centerY="225" width="416" height="416">
+                        <Transform target="endAngle" value="18 + (clamp([BATTERY_PERCENT], 0, 100) / 100.0) * 56"/>
+                        <Stroke color="#ff9ece6a" cap="ROUND" thickness="8"/>
+                    </Arc>
+                </PartDraw>
+                <PartText x="0" y="0" width="450" height="450">
+                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="18" endAngle="74" direction="CLOCKWISE" align="CENTER">
+                        <Font family="jetbrains_mono_bold" size="13" weight="BOLD" color="#ff9ece6a">
                             <Template><![CDATA[⚡ %s]]>
-                                <Parameter expression="[COMPLICATION.TEXT]"/>
+                                <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : ([BATTERY_PERCENT] + %)"/>
                             </Template>
                         </Font>
-                    </Text>
+                    </TextCircular>
                 </PartText>
             </Complication>
-            <Complication type="EMPTY"/>
-        </ComplicationSlot>
-
-        <!-- BOTTOM COMPLICATION: Steps / Activity (Slot 2) -->
-        <ComplicationSlot
-            slotId="2"
-            displayName="@string/steps_complication_label"
-            supportedTypes="SHORT_TEXT RANGED_VALUE EMPTY"
-            x="165" y="362" width="120" height="56">
-            <DefaultProviderPolicy
-                defaultSystemProvider="STEP_COUNT"
-                defaultSystemProviderType="SHORT_TEXT"/>
-            <BoundingOval x="0" y="0" width="120" height="56" outlinePadding="2.0"/>
-            <Complication type="SHORT_TEXT">
-                <PartText x="0" y="16" width="120" height="24">
-                    <Text align="CENTER">
-                        <Font family="SYNC_TO_DEVICE" size="13" weight="BOLD" color="#ffe0af68">
-                            <Template><![CDATA[👟 %s STEPS]]>
-                                <Parameter expression="[COMPLICATION.TEXT]"/>
-                            </Template>
-                        </Font>
-                    </Text>
-                </PartText>
-            </Complication>
-            <Complication type="RANGED_VALUE">
-                <PartText x="0" y="16" width="120" height="24">
-                    <Text align="CENTER">
-                        <Font family="SYNC_TO_DEVICE" size="13" weight="BOLD" color="#ffe0af68">
-                            <Template><![CDATA[👟 %s]]>
-                                <Parameter expression="round([COMPLICATION.RANGED_VALUE_VALUE])"/>
-                            </Template>
-                        </Font>
-                    </Text>
-                </PartText>
-            </Complication>
-            <Complication type="EMPTY"/>
-        </ComplicationSlot>
-
-        <!-- LEFT COMPLICATION: Heart Rate / Health (Slot 3) -->
-        <ComplicationSlot
-            slotId="3"
-            displayName="@string/heart_rate_complication_label"
-            supportedTypes="SHORT_TEXT SMALL_IMAGE EMPTY"
-            x="20" y="196" width="90" height="56">
-            <BoundingOval x="0" y="0" width="90" height="56" outlinePadding="2.0"/>
-            <Complication type="SHORT_TEXT">
-                <PartText x="0" y="16" width="90" height="24">
-                    <Text align="CENTER">
-                        <Font family="SYNC_TO_DEVICE" size="13" weight="BOLD" color="#fff7768e">
-                            <Template><![CDATA[%s]]>
-                                <Parameter expression="[COMPLICATION.TEXT] != null && [COMPLICATION.TEXT] != 'None' ? ('♥ ' + [COMPLICATION.TEXT]) : ''"/>
-                            </Template>
-                        </Font>
-                    </Text>
-                </PartText>
+            <Complication type="MONOCHROMATIC_IMAGE">
+                <PartImage x="338" y="84" width="28" height="28">
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+                </PartImage>
             </Complication>
             <Complication type="SMALL_IMAGE">
-                <PartImage x="25" y="8" width="40" height="40">
+                <PartImage x="338" y="84" width="28" height="28">
                     <Image resource="[COMPLICATION.SMALL_IMAGE]"/>
                 </PartImage>
             </Complication>
             <Complication type="EMPTY"/>
         </ComplicationSlot>
 
-        <!-- RIGHT COMPLICATION: Weather / Next Event (Slot 4) -->
+        <!-- RADIAL COMPLICATION 2: BOTTOM-RIGHT (Steps) -->
         <ComplicationSlot
-            slotId="4"
-            displayName="@string/weather_complication_label"
-            supportedTypes="SHORT_TEXT SMALL_IMAGE EMPTY"
-            x="340" y="196" width="90" height="56">
-            <BoundingOval x="0" y="0" width="90" height="56" outlinePadding="2.0"/>
-            <Complication type="SHORT_TEXT">
-                <PartText x="0" y="16" width="90" height="24">
-                    <Text align="CENTER">
-                        <Font family="SYNC_TO_DEVICE" size="13" weight="BOLD" color="#ff7dcfff">
-                            <Template><![CDATA[%s]]>
-                                <Parameter expression="[COMPLICATION.TEXT] != null && [COMPLICATION.TEXT] != 'None' ? [COMPLICATION.TEXT] : ''"/>
+            slotId="2"
+            isCustomizable="TRUE"
+            displayName="@string/steps_complication_label"
+            supportedTypes="RANGED_VALUE SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE EMPTY"
+            x="0" y="0" width="450" height="450">
+            <DefaultProviderPolicy
+                defaultSystemProvider="STEP_COUNT"
+                defaultSystemProviderType="SHORT_TEXT"/>
+            <BoundingArc
+                centerX="225" centerY="225"
+                width="416" height="416"
+                thickness="40"
+                isRoundEdge="TRUE"
+                startAngle="106" endAngle="162"
+                direction="CLOCKWISE"
+                outlinePadding="2"/>
+            <Complication type="RANGED_VALUE">
+                <!-- Dynamic Gauge Track -->
+                <PartDraw x="0" y="0" width="450" height="450">
+                    <Arc direction="CLOCKWISE" startAngle="106" endAngle="162" centerX="225" centerY="225" width="416" height="416">
+                        <Transform target="endAngle" value="106 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]) ? 10000 : ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]))) * 56)"/>
+                        <Stroke color="#ffe0af68" cap="ROUND" thickness="8"/>
+                    </Arc>
+                </PartDraw>
+                <!-- Curved Text along Arc -->
+                <PartText x="0" y="0" width="450" height="450">
+                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="162" endAngle="106" direction="COUNTER_CLOCKWISE" align="CENTER">
+                        <Font family="jetbrains_mono_bold" size="12" weight="BOLD" color="#ffe0af68">
+                            <Template><![CDATA[👟 %s]]>
+                                <Parameter expression="round([COMPLICATION.RANGED_VALUE_VALUE])"/>
                             </Template>
                         </Font>
-                    </Text>
+                    </TextCircular>
                 </PartText>
             </Complication>
+            <Complication type="SHORT_TEXT">
+                <!-- Steps Gauge Track -->
+                <PartDraw x="0" y="0" width="450" height="450">
+                    <Arc direction="CLOCKWISE" startAngle="106" endAngle="162" centerX="225" centerY="225" width="416" height="416">
+                        <Transform target="endAngle" value="106 + (clamp([STEP_COUNT], 100, 10000) / 10000.0) * 56"/>
+                        <Stroke color="#ffe0af68" cap="ROUND" thickness="8"/>
+                    </Arc>
+                </PartDraw>
+                <!-- Curved Text along Arc -->
+                <PartText x="0" y="0" width="450" height="450">
+                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="162" endAngle="106" direction="COUNTER_CLOCKWISE" align="CENTER">
+                        <Font family="jetbrains_mono_bold" size="12" weight="BOLD" color="#ffe0af68">
+                            <Template><![CDATA[👟 %s]]>
+                                <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [STEP_COUNT]"/>
+                            </Template>
+                        </Font>
+                    </TextCircular>
+                </PartText>
+            </Complication>
+            <Complication type="MONOCHROMATIC_IMAGE">
+                <PartImage x="338" y="338" width="28" height="28">
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+                </PartImage>
+            </Complication>
             <Complication type="SMALL_IMAGE">
-                <PartImage x="25" y="8" width="40" height="40">
+                <PartImage x="338" y="338" width="28" height="28">
+                    <Image resource="[COMPLICATION.SMALL_IMAGE]"/>
+                </PartImage>
+            </Complication>
+            <Complication type="EMPTY"/>
+        </ComplicationSlot>
+
+        <!-- RADIAL COMPLICATION 3: BOTTOM-LEFT (Heart Rate / Health / Notification) -->
+        <ComplicationSlot
+            slotId="3"
+            isCustomizable="TRUE"
+            displayName="@string/heart_rate_complication_label"
+            supportedTypes="RANGED_VALUE SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE EMPTY"
+            x="0" y="0" width="450" height="450">
+            <DefaultProviderPolicy
+                defaultSystemProvider="UNREAD_NOTIFICATION_COUNT"
+                defaultSystemProviderType="SHORT_TEXT"/>
+            <BoundingArc
+                centerX="225" centerY="225"
+                width="416" height="416"
+                thickness="40"
+                isRoundEdge="TRUE"
+                startAngle="198" endAngle="254"
+                direction="CLOCKWISE"
+                outlinePadding="2"/>
+            <Complication type="RANGED_VALUE">
+                <!-- Dynamic Gauge Track -->
+                <PartDraw x="0" y="0" width="450" height="450">
+                    <Arc direction="CLOCKWISE" startAngle="198" endAngle="254" centerX="225" centerY="225" width="416" height="416">
+                        <Transform target="endAngle" value="198 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]) ? 150 : ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]))) * 56)"/>
+                        <Stroke color="#fff7768e" cap="ROUND" thickness="8"/>
+                    </Arc>
+                </PartDraw>
+                <!-- Curved Text along Arc -->
+                <PartText x="0" y="0" width="450" height="450">
+                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="254" endAngle="198" direction="COUNTER_CLOCKWISE" align="CENTER">
+                        <Font family="jetbrains_mono_bold" size="12" weight="BOLD" color="#fff7768e">
+                            <Template><![CDATA[❤️ %s]]>
+                                <Parameter expression="round([COMPLICATION.RANGED_VALUE_VALUE])"/>
+                            </Template>
+                        </Font>
+                    </TextCircular>
+                </PartText>
+            </Complication>
+            <Complication type="SHORT_TEXT">
+                <!-- Dynamic Track -->
+                <PartDraw x="0" y="0" width="450" height="450">
+                    <Arc direction="CLOCKWISE" startAngle="198" endAngle="254" centerX="225" centerY="225" width="416" height="416">
+                        <Transform target="endAngle" value="198 + (([HEART_RATE] &gt; 40) ? ((clamp([HEART_RATE], 40, 180) - 40) / 140.0 * 56) : 24)"/>
+                        <Stroke color="#fff7768e" cap="ROUND" thickness="8"/>
+                    </Arc>
+                </PartDraw>
+                <!-- Curved Text along Arc -->
+                <PartText x="0" y="0" width="450" height="450">
+                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="254" endAngle="198" direction="COUNTER_CLOCKWISE" align="CENTER">
+                        <Font family="jetbrains_mono_bold" size="12" weight="BOLD" color="#fff7768e">
+                            <Template><![CDATA[❤️ %s]]>
+                                <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : ([HEART_RATE] &gt; 0 ? [HEART_RATE] : --)"/>
+                            </Template>
+                        </Font>
+                    </TextCircular>
+                </PartText>
+            </Complication>
+            <Complication type="MONOCHROMATIC_IMAGE">
+                <PartImage x="84" y="338" width="28" height="28">
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+                </PartImage>
+            </Complication>
+            <Complication type="SMALL_IMAGE">
+                <PartImage x="84" y="338" width="28" height="28">
+                    <Image resource="[COMPLICATION.SMALL_IMAGE]"/>
+                </PartImage>
+            </Complication>
+            <Complication type="EMPTY"/>
+        </ComplicationSlot>
+
+        <!-- RADIAL COMPLICATION 4: TOP-LEFT (Weather / Day / Calendar) -->
+        <ComplicationSlot
+            slotId="4"
+            isCustomizable="TRUE"
+            displayName="@string/weather_complication_label"
+            supportedTypes="RANGED_VALUE SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE EMPTY"
+            x="0" y="0" width="450" height="450">
+            <DefaultProviderPolicy
+                defaultSystemProvider="DAY_OF_WEEK"
+                defaultSystemProviderType="SHORT_TEXT"/>
+            <BoundingArc
+                centerX="225" centerY="225"
+                width="416" height="416"
+                thickness="40"
+                isRoundEdge="TRUE"
+                startAngle="286" endAngle="342"
+                direction="CLOCKWISE"
+                outlinePadding="2"/>
+            <Complication type="RANGED_VALUE">
+                <!-- Dynamic Gauge Track -->
+                <PartDraw x="0" y="0" width="450" height="450">
+                    <Arc direction="CLOCKWISE" startAngle="286" endAngle="342" centerX="225" centerY="225" width="416" height="416">
+                        <Transform target="endAngle" value="286 + (((clamp(([COMPLICATION.RANGED_VALUE_VALUE]), ([COMPLICATION.RANGED_VALUE_MIN]), ([COMPLICATION.RANGED_VALUE_MAX])) - ([COMPLICATION.RANGED_VALUE_MIN])) / (([COMPLICATION.RANGED_VALUE_MAX] == [COMPLICATION.RANGED_VALUE_MIN]) ? 100 : ([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN]))) * 56)"/>
+                        <Stroke color="#ff7dcfff" cap="ROUND" thickness="8"/>
+                    </Arc>
+                </PartDraw>
+                <!-- Curved Text along Arc -->
+                <PartText x="0" y="0" width="450" height="450">
+                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="286" endAngle="342" direction="CLOCKWISE" align="CENTER">
+                        <Font family="jetbrains_mono_bold" size="12" weight="BOLD" color="#ff7dcfff">
+                            <Template><![CDATA[%s]]>
+                                <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : round([COMPLICATION.RANGED_VALUE_VALUE])"/>
+                            </Template>
+                        </Font>
+                    </TextCircular>
+                </PartText>
+            </Complication>
+            <Complication type="SHORT_TEXT">
+                <!-- Track -->
+                <PartDraw x="0" y="0" width="450" height="450">
+                    <Arc direction="CLOCKWISE" startAngle="286" endAngle="342" centerX="225" centerY="225" width="416" height="416">
+                        <Stroke color="#ff7dcfff" cap="ROUND" thickness="8"/>
+                    </Arc>
+                </PartDraw>
+                <!-- Curved Text along Arc -->
+                <PartText x="0" y="0" width="450" height="450">
+                    <TextCircular centerX="225" centerY="225" width="374" height="374" startAngle="286" endAngle="342" direction="CLOCKWISE" align="CENTER">
+                        <Font family="jetbrains_mono_bold" size="12" weight="BOLD" color="#ff7dcfff">
+                            <Template><![CDATA[%s]]>
+                                <Parameter expression="[COMPLICATION.TEXT] != null ? [COMPLICATION.TEXT] : [DAY_OF_WEEK_S]"/>
+                            </Template>
+                        </Font>
+                    </TextCircular>
+                </PartText>
+            </Complication>
+            <Complication type="MONOCHROMATIC_IMAGE">
+                <PartImage x="84" y="84" width="28" height="28">
+                    <Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]"/>
+                </PartImage>
+            </Complication>
+            <Complication type="SMALL_IMAGE">
+                <PartImage x="84" y="84" width="28" height="28">
                     <Image resource="[COMPLICATION.SMALL_IMAGE]"/>
                 </PartImage>
             </Complication>
